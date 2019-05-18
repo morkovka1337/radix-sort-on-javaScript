@@ -8,7 +8,7 @@
 
 <body>
 
-  <p>Начало документа...</p>
+  <p>Поразрядная сортировка</p>
   <script>
     class Queue 
     { 
@@ -71,7 +71,9 @@
             {
                 var value
                 if (step < arraySplited[j].length)
-                    value = arraySplited[j][step];
+                {
+                    value = arraySplited[j][arraySplited[j].length - 1 - step];
+                }
                 else
                 {
                     value = 0;
@@ -91,17 +93,17 @@
             }
             
         }
-        alert(arraySplited);
+        
+        return arraySplited;
     } 
     var inputArray;
     inputArray = prompt("Введите исходный массив чисел через запятую ");
-    radixSort(inputArray);
+    alert(radixSort(inputArray));
     
     
 
 </script>
 
-  <p>...Конец документа</p>
 
 </body>
 
