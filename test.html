@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <!-- Тег meta для указания кодировки -->
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+  <p>Начало документа...</p>
+  <script>
+    class Queue 
+    { 
+        // Array is used to implement a Queue 
+        constructor() 
+        { 
+            this.items = []; 
+        } 
+                  
+    // Functions to be implemented 
+    push(item)
+    {
+        this.items.push(item);
+    }
+    pop() 
+    {
+        if (this.isEmpty() != true)
+        {
+            this.items.shift();
+        }
+    }
+    getLast() 
+    {
+        if (!this.isEmpty())
+        {
+            return this.items[0];
+        }
+    }
+    isEmpty()
+    {
+        return this.items.length == 0;
+    }
+    printQueue()
+    {
+        var str = ""; 
+        for(var i = 0; i < this.items.length; i++) 
+            str += this.items[i] +" "; 
+        return str;
+    } 
+    }    
+    function radixSort(array)
+    {
+        var arraySplited = array.split(", "); //.map(Number);
+        var groups = [];
+        for (var i = 0; i < 10; i++){
+            groups.push(new Queue())
+        }
+        var maxLenElem = 0;
+        
+        for (var i = 0; i < arraySplited.length; i++)
+        {
+            if (arraySplited[i].length > maxLenElem)
+            {
+                maxLenElem = arraySplited[i].length;
+            }
+        }
+        for (var step = 0; step < maxLenElem; step++)
+        {
+            for (var j = 0; j < arraySplited.length; j++)
+            {
+                var value
+                if (step < arraySplited[j].length)
+                    value = arraySplited[j][step];
+                else
+                {
+                    value = 0;
+                }
+                groups[value].push(arraySplited[j]);
+                
+
+            }
+            arraySplited = [];
+            for (var j = 0; j < 10; j++)
+            {
+                while(!groups[j].isEmpty())
+                {
+                    arraySplited.push(groups[j].getLast());
+                    groups[j].pop();
+                }
+            }
+            
+        }
+        alert(arraySplited);
+    } 
+    var inputArray;
+    inputArray = prompt("Введите исходный массив чисел через запятую ");
+    radixSort(inputArray);
+    
+    
+
+</script>
+
+  <p>...Конец документа</p>
+
+</body>
+
+</html>
